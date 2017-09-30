@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+<style type="text/css">
+    .gamecontroller {
+        width: 98%;
+        margin: 0 auto;
+        text-align: center;
+        position: relative;
+    }
+    .gamecontroller .cbtn {
+        text-align: right;
+        margin-bottom: 1em;
+    }
+    .gamecontroller .cbtn button {
+        height: 2em;
+        font-size: 1em;
+    }
+    .gamecontroller .gpad {
+        position: relative;
+        width: 8em;
+        margin: 0 auto;
+    }
+    .gamecontroller .gpad button {
+        font-size: 1em;
+        width: 3em;
+        height: 2.4em;
+        position: absolute;
+    }
+    .gamecontroller .gpad .up {
+        top: -2em;
+    }
+    .gamecontroller .gpad .down {
+        top: 2em;
+    }
+    .gamecontroller .gpad .left {
+        left: 0em;
+    }
+    .gamecontroller .gpad .right {
+        left: 8em;
+    }
+    .gamecontroller .messages {
+        position: absolute;
+        top: 1em;
+        text-align: left;
+        left: 1em;
+    }
+    .gamecontroller .messages .msg {
+        padding: 0.3em 0.8em;
+        border: 1px solid #D4E2EA;
+        display: block;
+        float: left;
+        clear: both;
+        border-radius: 4px;
+        background-color: #F4FCFF;
+        cursor: default;
+        margin-bottom: 0.5em;
+    }
+    .gamecontroller .messages .msg:after {
+        content: "⊗";
+        position: relative;
+        right: -0.5em;
+        top: -0.2em;
+        color: #A9A9A9;
+        cursor: pointer;
+    }
+</style>
+<script type="text/javascript" async src="controller.js"></script>
+</head>
+<body>
+    <div class="gamecontroller">
+        <div class="cbtn">
+            <button type="button" onclick="controllerCore.closeWebSocket()">disconnect</button>
+        </div>
+        <div class="gpad">
+            <button type="button" data-action="u" class="up">&and;</button>
+            <button type="button" data-action="l" class="left">&lt;</button>
+            <button type="button" data-action="r" class="right">&gt;</button>
+            <button type="button" data-action="d" class="down">&nu;</button>
+        </div>
+        <div class="messages"></div>
+    </div>
+    
+</body>
+</html>
