@@ -1,0 +1,21 @@
+{
+  "name": "Websocket Server",
+  "description": "websocket server for the aircontroller",
+  "website": "https://github.com/andyvr/aircontroller",
+  "repository": "https://github.com/andyvr/aircontroller",
+  "logo": "https://cdn.auth0.com/blog/nodejs-awesome-polls/nodejs_logo.png",
+  "success_url": "/",
+  "keywords": [
+    "node",
+    "express",
+    "realtime",
+    "websocket"
+  ],
+  "scripts": {
+  },
+  "addons": [
+  ],
+  "env": {
+    "BUILDPACK_URL": "https://github.com/heroku/heroku-buildpack-nodejs"
+  }
+}

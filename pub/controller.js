@@ -3,7 +3,7 @@ var controllerCore = (function(){
         'options': {
             messages: document.querySelectorAll(".messages")[0],
             websocket: null,
-            wsUri: 'ws://ts-andyx.rhcloud.com:8000',
+            wsUri: 'ws://tsserver2.openode.io',
             connObj: null,                               //Connection Object (Group Id/User Id)
             meta: {
                 connected: false,
