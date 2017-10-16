@@ -1,0 +1,173 @@
+* {
+    -webkit-touch-callout: none;
+    -webkit-text-size-adjust: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+#warning-message {
+    display: none;
+    text-align: center;
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+@media only screen and (orientation: portrait) {
+    .aircontroller {
+    display: none;
+}
+ #warning-message {
+    display: block;
+}
+}
+@media only screen and (orientation: landscape) {
+    #warning-message {
+    display: none;
+}
+}
+.messages {
+    position: absolute;
+    top: 1em;
+    text-align: left;
+    left: 1em;
+    z-index: 10;
+}
+.messages .msg {
+    padding: 0.3em 0.8em;
+    border: 1px solid #D4E2EA;
+    display: block;
+    float: left;
+    clear: both;
+    border-radius: 4px;
+    background-color: #F4FCFF;
+    cursor: default;
+    margin-bottom: 0.5em;
+}
+.messages .msg:after {
+    content: "\2297";
+    position: relative;
+    right: -0.5em;
+    top: -0.2em;
+    color: #A9A9A9;
+    cursor: pointer;
+}
+html {
+    -webkit-text-size-adjust: none;
+}
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+body {
+    min-height: 100%;
+    background-color: gray;
+}
+.aircontroller {
+    height: 100%;
+    position: fixed;
+    width: 100%;
+}
+.ctrl {
+    height: 2em;
+}
+.gpad {
+    height: 80%;
+    height: calc(100% - 2em);
+    text-align: center;
+}
+.gpad button {
+    border: 0 none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    z-index: 5;
+    line-height: 1;
+    font-size: 1rem;
+    opacity: 0.4;
+    background-color: purple;
+}
+.gpad button span {
+    font-size: 0.4em;
+    vertical-align: middle;
+}
+.up {
+    left: 13%;
+    top: 0%;
+    height: 38%;
+    width: 11.5%;
+}
+.left {
+    top: 38%;
+    width: 14%;
+    left: 1%;
+    height: 25%;
+}
+.right {
+    top: 38%;
+    left: 22%;
+    width: 13%;
+    height: 25%;
+}
+.down {
+    top: 63%;
+    left: 13%;
+    height: 37%;
+    width: 11%;
+}
+.fire {
+    top: 52%;
+    right: 5%;
+    width: 12%;
+    height: 30%;
+}
+.fire-alt {
+    top: 52%;
+    right: 18%;
+    width: 12%;
+    height: 30%;
+}
+.start {
+    left: 41%;
+    top: 63%;
+    width: 8%;
+    height: 10%;
+}
+.select {
+    left: 54.6%;
+    top: 63%;
+    width: 8.2%;
+    height: 10%;
+}
+.action {
+    position: relative;
+    z-index: 200;
+}
+.touchpanel {
+    position: relative;
+    width: auto;
+    height: 100%;
+    display: inline-block;
+}
+.touchpanel img {
+    display: inline-block;
+    max-width: 100%;
+    max-height: 100%;
+    float: left;
+    position: relative;
+    z-index: 1;
+}
+.actions {
+    padding-top: 37.239%;
+    position: relative;
+    left: 0;
+    width: 100%;
+    z-index: 5;
+}

@@ -2,52 +2,58 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Untitled Document</title>
+<title>Air Controller</title>
 <style type="text/css">
-    .gamecontroller {
+    .aircontroller {
         width: 98%;
         margin: 0 auto;
         text-align: center;
         position: relative;
     }
-    .gamecontroller .cbtn {
+    .aircontroller .cbtn {
         text-align: right;
         margin-bottom: 1em;
     }
-    .gamecontroller .cbtn button {
+    .aircontroller .cbtn button {
         height: 2em;
         font-size: 1em;
     }
-    .gamecontroller .gpad {
+    .aircontroller .gpad {
         position: relative;
         width: 8em;
         margin: 0 auto;
     }
-    .gamecontroller .gpad button {
+    .aircontroller .gpad button {
         font-size: 1em;
         width: 3em;
         height: 2.4em;
         position: absolute;
     }
-    .gamecontroller .gpad .up {
+    .aircontroller .gpad .up {
         top: -2em;
     }
-    .gamecontroller .gpad .down {
+    .aircontroller .gpad .down {
         top: 2em;
     }
-    .gamecontroller .gpad .left {
+    .aircontroller .gpad .left {
         left: 0em;
     }
-    .gamecontroller .gpad .right {
+    .aircontroller .gpad .right {
         left: 8em;
     }
-    .gamecontroller .messages {
+    .aircontroller .gpad .fire {
+        left: 15em;
+        height: 4.4em;
+        top: -1em;
+        width: 4.5em;
+    }
+    .aircontroller .messages {
         position: absolute;
         top: 1em;
         text-align: left;
         left: 1em;
     }
-    .gamecontroller .messages .msg {
+    .aircontroller .messages .msg {
         padding: 0.3em 0.8em;
         border: 1px solid #D4E2EA;
         display: block;
@@ -58,8 +64,8 @@
         cursor: default;
         margin-bottom: 0.5em;
     }
-    .gamecontroller .messages .msg:after {
-        content: "⊗";
+    .aircontroller .messages .msg:after {
+        content: "\2297";
         position: relative;
         right: -0.5em;
         top: -0.2em;
@@ -67,18 +73,20 @@
         cursor: pointer;
     }
 </style>
-<script type="text/javascript" async src="controller.js"></script>
+<script type="text/javascript" defer src="core.js"></script>
+<script type="text/javascript" defer src="pad.js"></script>
 </head>
 <body>
-    <div class="gamecontroller">
+    <div class="aircontroller">
         <div class="cbtn">
-            <button type="button" onclick="controllerCore.closeWebSocket()">disconnect</button>
+            <button type="button" onclick="aircontroller.core.connectionEnd()">disconnect</button>
         </div>
         <div class="gpad">
             <button type="button" data-action="u" class="up">&and;</button>
             <button type="button" data-action="l" class="left">&lt;</button>
             <button type="button" data-action="r" class="right">&gt;</button>
             <button type="button" data-action="d" class="down">&nu;</button>
+            <button type="button" data-action="a1" class="fire">&#8859;</button>
         </div>
         <div class="messages"></div>
     </div>

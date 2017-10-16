@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Air Controller</title>
+<style type="text/css">
+    
+</style>
+<script type="text/javascript">
+  
+  (function () {
+
+  'use strict';
+
+  var defaultConf = {
+    ellipsis: '…',
+    debounce: 100,
+    responsive: true,
+    class: '.clamp',
+    lines: 2,
+    portrait: null,
+    break_word: true
+  };
+
+  var mainFunction = {
+    testFunc: function(param){
+      return 5;
+    }
+    
+  };
+
+  //RequireJS Style
+  if (typeof define === "function" && define.amd) {
+    define("mainfunction", [], function() {
+      return mainFunction;
+    });
+  }
+  
+  self.mainFunction = mainFunction;
+  return mainFunction;
+
+}());
+</script>
+
+</head>
+<body>
+    <script type="text/javascript">
+      mainFunction.testFunc();
+    </script>
+    
+</body>
+</html>
