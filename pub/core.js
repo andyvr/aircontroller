@@ -6,7 +6,7 @@
   //Core module
   aircontroller.core = function(g) {
       //that is available to public
-      var that = { 
+      var that = {
           'options': {
               messages: document.querySelectorAll(".messages")[0],
               translate: 'ru',
@@ -48,6 +48,18 @@
                   return that.popMsg("Sorry, your device is not supported!");
               }
               that.connectionStart();
+          },
+          //Run function (restarts/reinits the core)
+          'run': function() {
+              that.connectionEnd();
+              //Remove load event
+              window.removeEventListener('load', that.init, false);
+              //Start browser detection onload event
+              window.addEventListener("load", that.init, false);
+          },
+          //Set custom options
+          'setOptions': function(options) {
+
           },
           //Notifications
           'popMsg': function(message, autohide) {
@@ -119,45 +131,39 @@
               }
           }
       }
-      //Start browser detection onload event
-      if (window.addEventListener) {
-          window.addEventListener("load", that.init, false);
-      }
-      else if (window.attachEvent) {
-          window.attachEvent("onload", that.init);   
-      }
+      //Close connection when the page is closed
       window.onbeforeunload = function() {
           that.connectionEnd();
       }
       return that;
   }(aircontroller);
-  
+
   //Transport Websocket module
   aircontroller.websocket = function(g){
       //Websocket functions (Transport)
       var that = {
           'options': {
-              websocket: null,
-              wsUri: 'ws://ts-andyx.rhcloud.com:8000',     //Websocket url
+              websocket: null,                             //Websocket object
+              wsUri: 'ws://tsserver2.openode.io',          //Websocket server url
               connObj: null,                               //Connection Object (Group Id/User Id)
               meta: {
                   closesignal: true
               }
           },
-          'connectionStart': function() { 
-              that.options.websocket = new WebSocket(that.options.wsUri); 
-              that.options.websocket.onopen = function(evt) { 
-                  that.wsOpen(evt) 
-              }; 
-              that.options.websocket.onclose = function(evt) { 
-                  that.wsClose(evt) 
-              }; 
-              that.options.websocket.onmessage = function(evt) { 
-                  that.wsMsgIn(evt) 
-              }; 
-              that.options.websocket.onerror = function(evt) { 
-                  that.wsError(evt) 
-              }; 
+          'connectionStart': function() {
+              that.options.websocket = new WebSocket(that.options.wsUri);
+              that.options.websocket.onopen = function(evt) {
+                  that.wsOpen(evt)
+              };
+              that.options.websocket.onclose = function(evt) {
+                  that.wsClose(evt)
+              };
+              that.options.websocket.onmessage = function(evt) {
+                  that.wsMsgIn(evt)
+              };
+              that.options.websocket.onerror = function(evt) {
+                  that.wsError(evt)
+              };
           },
           'connectionEnd': function() {
               if(that.options.websocket) {
@@ -166,10 +172,10 @@
                   that.wsClose();
               }
           },
-          'wsOpen': function(evt) { 
+          'wsOpen': function(evt) {
               g.core.popMsg("Ws Connected!");
-          }, 
-          'wsClose': function(evt) { 
+          },
+          'wsClose': function(evt) {
               g.core.popMsg("Ws Disconnected!");
               that.options.connObj = null;
               that.options.websocket.onclose = function () {}; // disable onclose handler first
@@ -180,7 +186,7 @@
                   that.connectionStart();
               }
           },
-          'wsError': function(evt) { 
+          'wsError': function(evt) {
               g.core.popMsg("Error, Websocket Connection!");
           },
           'enterRoom': function(roomId) {
@@ -188,7 +194,7 @@
               var out = JSON.stringify(that.options.connObj);
               that.wsMsgOut(out);
           },
-          'wsMsgIn': function(evt) { 
+          'wsMsgIn': function(evt) {
               var indata = JSON.parse(evt.data);
               //Ws connection created just yet
               if(!that.options.connObj) {
@@ -215,9 +221,9 @@
               //Or directly send data to server
               else that.dataIn(indata);
           },
-          'wsMsgOut': function(message) { 
+          'wsMsgOut': function(message) {
               if(that.options.websocket) {
-                  that.options.websocket.send(message); 
+                  that.options.websocket.send(message);
               }
           },
           //Data Processing Functions
@@ -232,7 +238,7 @@
       }
       return that;
   }(aircontroller);
-  
+
   //i18 translations object
   aircontroller.i18 = {
       en: {

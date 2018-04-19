@@ -16,6 +16,12 @@ aircontroller.host = function(g){
                 that.shoWelcomeScreen();
             }
         },
+        //Run function (restarts/reinits)
+        'run': function(options) {
+            g.core.setOptions(options);
+            g.core.run();
+            that.init();
+        },
         //Set keyboard binding - custom keys binding and possible gamepad binding
         //This creates bindings between data sent from controller and values to be broadcasted in host/game
         'setKeyBinding': function() {
@@ -52,8 +58,8 @@ aircontroller.host = function(g){
         },
         //Listens to the Controller Data In event
         'bindDataListener': function(func) {
-            document.addEventListener(g.core.options.dataInEvt, function(evt) { 
-                func(evt.detail); 
+            document.addEventListener(g.core.options.dataInEvt, function(evt) {
+                func(evt.detail);
             });
         },
         'getScantag': function(link) {
@@ -61,7 +67,7 @@ aircontroller.host = function(g){
             return '<img alt="Scan Me to load your aircontroller" src="https://chart.googleapis.com/chart?chs=300x300&chld=M|0&cht=qr&chl='+link+'"/>'
         },
         'shoWelcomeScreen': function() {
-            document.addEventListener(g.core.options.dataConnectedEvt, function(evt) { 
+            document.addEventListener(g.core.options.dataConnectedEvt, function(evt) {
                 var link = that.options.controllerLink + "?" + g.core.options.roomId;
                 var tag = that.getScantag(link);
                 var content = '<div class="aircontroller_welcome"><div><h6>Use your cell phone/touch device to play the game. Turn it to a simple controller!</h6><p>Please navigate to following link: <em>'+link+'</em><br>Or scan the QR code below.</p>'+tag+'</div></div>';
@@ -70,7 +76,7 @@ aircontroller.host = function(g){
             });
         },
         'removeWelcomeScreen': function() {
-            document.addEventListener(g.core.options.dataControllerEvt, function(evt) { 
+            document.addEventListener(g.core.options.dataControllerEvt, function(evt) {
                 var controllerstring = evt.detail.msg.controller;
                 var welcome = document.querySelectorAll(".aircontroller_welcome");
                 if(welcome.length) {
@@ -88,8 +94,8 @@ aircontroller.host = function(g){
                     else {
                         var eventType = 'keyup';
                     }
-                    var event = document.createEvent('Event'); 
-                    event.initEvent(eventType, true, true); 
+                    var event = document.createEvent('Event');
+                    event.initEvent(eventType, true, true);
                     event.keyCode = that.options.binding[prop];
                     var cancelled = !document.dispatchEvent(event);
                     /**/if(cancelled) {
@@ -99,7 +105,6 @@ aircontroller.host = function(g){
             }
         }
     };
-    that.init();
     return that;
 }(aircontroller);
 
