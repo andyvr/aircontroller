@@ -3,7 +3,7 @@ aircontroller.host = function(g){
     "use strict";
     var that = {
         'options': {
-            'controllerLink': 'http://air.local.192.168.1.145.xip.io/i.html',   //URL to the controller
+            'controllerLink': 'http://aircontroller.loc.192.168.1.4.xip.io/pub/padnew/i.html',   //URL to the controller
             'welcomeScreen': true,     // display welcome screen before game starts
             'device': 'cursor',        // 'keyboard', 'cursor'
             'binding': {}              // custom bindings

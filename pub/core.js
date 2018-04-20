@@ -20,7 +20,7 @@
                   timer: null,
                   data: null
               },
-              dataoutDelay: 40,                                   //Delay in (ms) before the system checks a button pressed
+              dataoutDelay: 20,                                   //Delay in (ms) before the system checks a button pressed
               debugToConsole: true                                //Show debug messages in the console
           },
           //Merge properties of 2 objects into the resulting object

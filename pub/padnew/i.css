@@ -100,52 +100,60 @@ body {
     vertical-align: middle;
 }
 .up {
-    left: 13%;
-    top: 0%;
-    height: 38%;
-    width: 11.5%;
+    left: 11%;
+    top: 2%;
+    height: 40.3%;
+    width: 15%;
+    border-radius: 50% 0 0 0;
+    transform: rotate(45deg);
 }
 .left {
-    top: 38%;
-    width: 14%;
-    left: 1%;
-    height: 25%;
+    top: 30%;
+    width: 15%;
+    left: 0.6%;
+    height: 40.3%;
+    border-radius: 50% 0 0 0;
+    transform: rotate(-45deg);
 }
 .right {
-    top: 38%;
-    left: 22%;
-    width: 13%;
-    height: 25%;
+    top: 30%;
+    left: 21.5%;
+    width: 15%;
+    border-radius: 0 50% 0 0;
+    height: 40.3%;
+    transform: rotate(45deg);
 }
 .down {
-    top: 63%;
-    left: 13%;
-    height: 37%;
-    width: 11%;
+    top: 58%;
+    left: 11%;
+    height: 40.3%;
+    width: 15%;
+    transform: rotate(-45deg);
+    border-radius: 0 0 0 50%;
 }
 .fire {
-    top: 52%;
-    right: 5%;
-    width: 12%;
-    height: 30%;
+    top: 50%;
+    right: 4.5%;
+    width: 13%;
+    height: 35%;
 }
 .fire-alt {
-    top: 52%;
-    right: 18%;
-    width: 12%;
-    height: 30%;
+    top: 50%;
+    right: 17.5%;
+    width: 13%;
+    height: 35%;
 }
 .start {
-    left: 41%;
-    top: 63%;
-    width: 8%;
-    height: 10%;
+    left: 39%;
+    top: 58%;
+    width: 12%;
+    height: 20%;
 }
 .select {
-    left: 54.6%;
-    top: 63%;
-    width: 8.2%;
-    height: 10%;
+    left: 53%;
+    top: 58%;
+    width: 12%;
+    height: 20%;
 }
 .action {
     position: relative;

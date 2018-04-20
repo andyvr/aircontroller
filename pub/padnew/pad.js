@@ -47,6 +47,8 @@ aircontroller.controllerPad = function(g){
             });
         },
         'setControlls': function() {
+            var current_action = "";
+            
             function addListenerMulti(el, s, fn, p) {
               var evts = s.split(' ');
               for (var i=0, iLen=evts.length; i<iLen; i++) {
@@ -77,15 +79,47 @@ aircontroller.controllerPad = function(g){
                 var btn = that.options.directionBtns[i];
                 addListenerMulti(btn, "mousedown touchstart", function(evt){
                     evt.preventDefault();
-                    that.sendData(evt, 1);
+                    if(!evt.target.dataset.action) {
+                        return;
+                    }
+                    current_action = evt.target.dataset.action;
+                    that.sendData(evt.target.dataset.action, 1);
                     addClass(evt.target.parentElement, evt.target.dataset.action);
+                }, true);
+                addListenerMulti(btn, "touchmove", function(evt){
+                    evt.preventDefault();
+                    var targetElem = document.elementFromPoint(evt.touches[0].pageX, evt.touches[0].pageY);
+                    if(!targetElem.dataset.action) {
+                        return;
+                    }
+                    if(targetElem.dataset.action != current_action) {
+                        //Set old action to 0
+                        var out = {};
+                        out[current_action] = 0;
+                        g.core.dataOut(out);
+                        //Set new action to 1
+                        that.sendData(targetElem.dataset.action, 1);
+                        removeClass(evt.target.parentElement, current_action);
+                        addClass(evt.target.parentElement, targetElem.dataset.action);
+                        //Set new current action
+                        current_action = targetElem.dataset.action;
+                    }
                 }, true);
                 addListenerMulti(btn, "mouseup touchend", function(evt){
                     evt.preventDefault();
+                    if(!evt.target.dataset.action) {
+                        return;
+                    }
                     setTimeout(function() {
-                        that.sendData(evt, 0);
-                        removeClass(evt.target.parentElement, evt.target.dataset.action);
-                    }, g.core.options.dataoutDelay);
+                        if(evt.target.dataset.action != current_action) {
+                            that.sendData(current_action, 0);
+                            removeClass(evt.target.parentElement, current_action);
+                        }
+                        else {
+                            that.sendData(evt.target.dataset.action, 0);
+                            removeClass(evt.target.parentElement, evt.target.dataset.action);
+                        }
+                    }, 0);
                 }, true);
             }
             //Prevent pinch to zoom on iOS 10
@@ -93,9 +127,9 @@ aircontroller.controllerPad = function(g){
                 e.preventDefault();
             });
         },
-        'sendData': function(evt, value) {
+        'sendData': function(action, value) {
             var out = {};
-            out[evt.target.dataset.action] = value;
+            out[action] = value;
             g.core.dataOut(out);
         }
     };
